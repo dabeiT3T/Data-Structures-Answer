@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 '''
 Author: dabei
-My answer to Chapter 2 Quiz 4.
+My answer to Chapter 3 Quiz 4.
 
 A little bit complex, maybe this is not the best answer.
-The loop count equals to it's binary length + bit 1's count.
+The loop count equals to it's binary length + bit-1's count.
 For an example: exponent 100,
 bin(100) == '0b1100100'
-So the count is len('1100100') + 3(This is 3 bits which is 1), which is 10 times.
+So the count is length('1100100') + 3(There are 3 bits which is 1), which is 10 times.
 BTW, a bit-1 means one more step 'number * expoHelper(number, exponent-1)'.
 
-complexity: O(logn+k) ≈ O(logn)
+best: O(logn+1) ≈ O(logn) (like 8(0b1000))
+worst: O(logn+logn) ≈ O(logn) (like 7(ob111))
+complexity: O(logn)
 '''
 
 def expo(number: int, exponent: int) -> int:

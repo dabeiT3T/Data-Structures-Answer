@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Author: dabei
-My answer to Chapter 2 Quiz 2.
+My answer to Chapter 3 Quiz 2.
 
 complexity: O(n/2) ≈ O(n)
 '''

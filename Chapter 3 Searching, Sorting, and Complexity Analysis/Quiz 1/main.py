@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Author: dabei
-My answer to Chapter 2 Quiz 1.
+My answer to Chapter 3 Quiz 1.
 
 best: O(1)
 worst: O(n)
