@@ -78,7 +78,7 @@ class ArraySortedBag:
         '''Removes the item from self.'''
 
 if __name__ == '__main__':
-    asb = ArraySortedBag(list(range(9, 0, -1)))
+    asb = ArraySortedBag(range(9, 0, -1))
     print(asb)          # {1, 2, 3, 4, 5, 6, 7, 8, 9}
     asb.add(0)
     print(asb)          # {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
