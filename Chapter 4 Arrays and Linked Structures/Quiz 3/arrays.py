@@ -22,9 +22,9 @@ class Array:
 
     def _grow(self):
         '''Double array's length.'''
-        if len(self) == self._logicalSize:
+        if len(self) == self.size():
             items = [self._fillValue for i in range(len(self)*2)]
-            for i in range(self._logicalSize):
+            for i in range(self.size()):
                 items[i] = self._items[i]
             self._items = items
 
@@ -34,9 +34,9 @@ class Array:
         when logical size is a quarter of its length,
         but not less than its initial capacity.
         '''
-        if self._logicalSize < len(self)//4 and len(self) >= self._capacity*2:
+        if self.size() <= len(self)//4 and len(self) >= self._capacity*2:
             items = [self._fillValue for i in range(len(self)//2)]
-            for i in range(self._logicalSize):
+            for i in range(self.size()):
                 items[i] = self._items[i]
             self._items = items
 

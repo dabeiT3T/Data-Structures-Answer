@@ -26,8 +26,8 @@ class Array:
             raise IndexError('list index out of range')
         # if array length is not enough
         self._grow()
-        pos = min(self._logicalSize, pos)
-        for i in range(self._logicalSize, pos, -1):
+        pos = min(self.size(), pos)
+        for i in range(self.size(), pos, -1):
             self._items[i] = self._items[i-1]
         self._items[pos] = value
          # logical size add 1
@@ -36,11 +36,11 @@ class Array:
     def pop(self, pos):
         if (self._inRange(pos)):
             target = self._items[pos]
-            for i in range(pos, self._logicalSize-1):
+            for i in range(pos, self.size()-1):
                 self._items[i] = self._items[i+1]
 
             self._logicalSize -= 1
-            self._items[self._logicalSize] = self._fillValue
+            self._items[self.size()] = self._fillValue
             self._shrink()
             return target
 
@@ -50,9 +50,9 @@ class Array:
 
     def _grow(self):
         '''Double array's length.'''
-        if len(self) == self._logicalSize:
+        if len(self) == self.size():
             items = [self._fillValue for i in range(len(self)*2)]
-            for i in range(self._logicalSize):
+            for i in range(self.size()):
                 items[i] = self._items[i]
             self._items = items
 
@@ -62,9 +62,9 @@ class Array:
         when logical size is a quarter of its length,
         but not less than its initial capacity.
         '''
-        if self._logicalSize <= len(self)//4 and len(self) >= self._capacity*2:
+        if self.size <= len(self)//4 and len(self) >= self._capacity*2:
             items = [self._fillValue for i in range(len(self)//2)]
-            for i in range(self._logicalSize):
+            for i in range(self.size()):
                 items[i] = self._items[i]
             self._items = items
 
@@ -94,12 +94,12 @@ class Array:
         return len(self._items)
 
     def __str__(self):
-        return str(self._items[:self._logicalSize])
+        return str(self._items[:self.size()])
         # return '[' + ', '.join(map(str, self._items)) + ']'
 
     # def __iter__(self):
-    #     return iter(self._items[:self._logicalSize])
-    #    # return (x for x in self._items)
+    #     return iter(self._items[:self.size()])
+    #     return (self._items[x] for x in range(self.size()))
 
     def __getitem__(self, index):
         if (self._inRange(index)):
