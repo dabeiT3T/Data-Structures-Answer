@@ -18,12 +18,16 @@ class ArrayStack(AbstractStack):
         self._items = Array()
 
     def pop(self):
+        if self.isEmpty():
+            raise KeyError('The stack is empty')
         return self._items.pop(len(self)-1)
 
     def push(self, item):
         self._items.insert(len(self), item)
 
     def peek(self):
+        if self.isEmpty():
+            raise KeyError('The stack is empty')
         return self._items[len(self)-1]
 
     def __len__(self):
@@ -61,6 +65,11 @@ if __name__ == '__main__':
     print('\nLength: ', len(s))
     print('Empty:', s.isEmpty())
     # additional test
+    print('Pop empty stack will raise an error.')
+    try:
+        s.pop()
+    except KeyError as e:
+        print('KeyError:', e, file=sys.stderr)
     print('Push 1-5')
     for i in range(5):
         s.push(i+1)
@@ -74,4 +83,4 @@ if __name__ == '__main__':
     try:
         print(s + 0)
     except TypeError as e:
-        print(e, file=sys.stderr)
+        print('TypeError:', e, file=sys.stderr)
