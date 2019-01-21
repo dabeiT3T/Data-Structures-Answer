@@ -7,10 +7,11 @@ My answer to Chapter 7 Quiz 1.
 class AbstractStack:
     '''Abstact stack class with common methods.'''
 
-    def __init__(self, items):
+    def __init__(self, items = None):
         '''Create a stack by pushing items one by one.'''
-        for item in items:
-            self.push(item)
+        if items is not None:
+            for item in items:
+                self.push(item)
 
     def __add__(self, other):
         '''Add the other stack.'''

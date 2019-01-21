@@ -5,34 +5,34 @@ My answer to Chapter 6 Quiz 1.
 '''
 
 import sys
-from arrays import Array
+from links import Link
 from abstractstack import AbstractStack
 
-class ArrayStack(AbstractStack): 
-    '''Stack implemented by array.'''
+class LinkedStack(AbstractStack):
+    '''Stack implemented by link.'''
     def __init__(self, items = None):
-        self._items = Array()
+        self._items = Link()
         AbstractStack.__init__(self, items)
 
     def clear(self):
-        self._items = Array()
+        self._items = Link()
 
     def pop(self):
         if self.isEmpty():
             raise KeyError('The stack is empty')
-        return self._items.pop(len(self)-1)
+        return self._items.pop(0)
 
     def push(self, item):
-        self._items.insert(len(self), item)
+        self._items.insert(0, item)
 
     def peek(self):
         if self.isEmpty():
             raise KeyError('The stack is empty')
-        return self._items[len(self)-1]
+        return self._items[0]
 
     def __len__(self):
         '''Return the size of the stack.'''
-        return self._items.size()
+        return len(self._items)
 
     def __str__(self):
         '''Print from bottom to top.'''
@@ -40,10 +40,12 @@ class ArrayStack(AbstractStack):
 
     def __iter__(self):
         '''Get item from bottom to top, but not pop them out.'''
-        return iter(self._items)
+        tmpList = list(self._items)
+        for item in tmpList[::-1]:
+            yield item
 
 if __name__ == '__main__':
-    s = ArrayStack()
+    s = LinkedStack()
     print('Length: ', len(s))
     print('Empty:', s.isEmpty())
     print('Push 1-10')
@@ -53,7 +55,7 @@ if __name__ == '__main__':
     print('Item (bottom to top): ', s)
     print('Length: ', len(s))
     print('Empty:', s.isEmpty())
-    theClone = ArrayStack(s)
+    theClone = LinkedStack(s)
     print('Items in clone (bottom to top): ', theClone)
     theClone.clear()
     print('Length of clone after clear: ', len(theClone))
@@ -73,7 +75,7 @@ if __name__ == '__main__':
     print('Push 1-5')
     for i in range(5):
         s.push(i+1)
-    theClone = ArrayStack(s)
+    theClone = LinkedStack(s)
     print('Equals to clone: ', s == theClone)
     print('Clone push 6')
     theClone.push(6)

@@ -70,7 +70,7 @@ class Array:
 
     def _inRange(self, index):
         '''Return if the list index is out of range'''
-        if (index >= 0 and index < self.size()):
+        if index >= 0 and index < self.size():
             return True
         else:
             raise IndexError('list index out of range')
