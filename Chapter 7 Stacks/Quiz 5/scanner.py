@@ -25,6 +25,10 @@ class Scanner:
         for index, char in enumerate(withoutBlank):
             # meeting an operator means the end of a number
             if char in Token.operator:
+                # negatives
+                if char == '-' and index == tokenStart and (
+                    index == 0 or self.tokens[-1].isOperator()):
+                    continue
                 # skip '()'
                 if index != tokenStart:
                     # append the operand
@@ -44,7 +48,7 @@ class Scanner:
         return ' '.join(map(str, self))
 
 if __name__ == '__main__':
-    expression = '12.12 +(4/3.14 - 10)*2'
+    expression = '12.12 +(-4/3.14 - 10)*-2'
     s = Scanner(expression)
     print('Scann:', expression)
     print(*(token.getValue() for token in s.tokens))

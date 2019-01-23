@@ -64,7 +64,7 @@ class IFToPFConverter:
         return ' '.join(map(str, self._pfTokens))
 
 if __name__ == '__main__':
-    ife = '2^2^3'
+    ife = '-2^2^3'
     scanner = Scanner(ife)
     print('Infix expression:', scanner)
     converter = IFToPFConverter(scanner)

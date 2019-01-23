@@ -25,6 +25,10 @@ class Scanner:
         for index, char in enumerate(withoutBlank):
             # meeting an operator means the end of a number
             if char in Token.operator:
+                # negatives
+                if char == '-' and index == tokenStart and (
+                    index == 0 or self.tokens[-1].isOperator()):
+                    continue
                 # skip '()'
                 if index != tokenStart:
                     # append the operand
